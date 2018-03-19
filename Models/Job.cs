@@ -7,8 +7,9 @@ namespace jobManagement.Models
         {
         }
 
-        public Job(string cName, string jobDesc)
+        public Job(long id, string cName, string jobDesc)
         {
+            this.Id = id;
             this.companyName = cName;
             this.jobDescription = jobDesc;
         }

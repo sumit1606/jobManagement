@@ -13,7 +13,6 @@
 /Users/sumitbhanwala/Desktop/jobManagement/bin/Debug/netcoreapp2.0/jobManagement.runtimeconfig.dev.json
 /Users/sumitbhanwala/Desktop/jobManagement/bin/Debug/netcoreapp2.0/jobManagement.dll
 /Users/sumitbhanwala/Desktop/jobManagement/bin/Debug/netcoreapp2.0/jobManagement.pdb
-/Users/sumitbhanwala/Desktop/jobManagement/obj/Debug/netcoreapp2.0/jobManagement.csprojResolveAssemblyReference.cache
 /Users/sumitbhanwala/Desktop/jobManagement/obj/Debug/netcoreapp2.0/jobManagement.csproj.CoreCompileInputs.cache
 /Users/sumitbhanwala/Desktop/jobManagement/obj/Debug/netcoreapp2.0/jobManagement.AssemblyInfoInputs.cache
 /Users/sumitbhanwala/Desktop/jobManagement/obj/Debug/netcoreapp2.0/jobManagement.AssemblyInfo.cs

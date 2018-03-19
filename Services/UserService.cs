@@ -11,118 +11,162 @@ namespace jobManagement.Services
 {
     public class UserService : UserServiceInterface
     {
-        private readonly UserContext _context;
-        private readonly JobContext jobContext;
-        public UserService(UserContext context , JobContext jobContext)
+        //private readonly UserContext _context;
+        //private readonly JobContext jobContext;
+        private readonly JobServiceInterface JobService;
+        private long id = 0;
+        List<User> currentUsers = new List<User>();
+        public UserService(JobServiceInterface JobService)
         {
-            _context = context;
-            this.jobContext = jobContext;
+            this.JobService = JobService;
             InitializeData();
         }
 
+        /// <summary>
+        /// Initialing the static data which can be replace with a
+        /// connection to database
+        /// </summary>
         private void InitializeData()
         {
-            //User testA = new User("testA", "testA@gmail.com");
-            //User testB = new User("testB", "testB@gmail.com");
-            //User testC = new User("testC", "testC@gmail.com");
-            //List<User> intialUser = new List<User>();
-            //foreach (User curr in intialUser)
-            //_context.Users.Add(testA);
-            //_context.Users.Add(testB);
-            //_context.Users.Add(testC);
-            //_context.SaveChanges();
+            User testA = new User(id++,"testA", "testA@gmail.com");
+            User testB = new User(id++,"testB", "testB@gmail.com");
+            User testC = new User(id++,"testC", "testC@gmail.com");
+            currentUsers.Add(testA);
+            currentUsers.Add(testB);
+            currentUsers.Add(testC);
         }
 
-        public void addJobById(long userID, long jobId)
+        /// <summary>
+        /// Finds the User with the given username
+        /// </summary>
+        /// <returns>User with the given usernae</returns>
+        /// <param name="name">Name.</param>
+        public User findUserbyName(string name)
         {
-            User user = findUserbyId(userID);
-            delete(userID);
-            Job currJob = jobContext.Jobs.FirstOrDefault(j => j.Id == jobId);
-            if(user.Jobs == null)
+            // iterating over the data and check if User
+            // exits otherwise returns null
+            for (int i = 0; i < currentUsers.Count; i++)
             {
-                List<Job> userJobs = new List<Job>();
-                userJobs.Add(currJob);
-                user.Jobs = userJobs;
+                if (currentUsers[i].EmailAddress == name)
+                    return currentUsers[i];
             }
-            else
-            {
-                List<Job> userJobs = new List<Job>();
-                userJobs.Add(currJob);
-                user.Jobs = userJobs;
-            }
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            return null;
         }
 
+        /// <summary>
+        /// Finds all users.
+        /// </summary>
+        /// <returns>List of Users</returns>
+        public IEnumerable<User> findAllUsers()
+        {
+            return currentUsers;
+        }
+
+        /// <summary>
+        /// Finds the userby ID.
+        /// </summary>
+        /// <returns>The found User if User is found else returns null</returns>
+        /// <param name="id">User Id in the system</param>
         public User findUserbyId(long id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
-            return user;
+            for (int i = 0; i < currentUsers.Count; i++)
+            {
+                if (currentUsers[i].Id == id)
+                    return currentUsers[i];
+            }
+            return null;
         }
         /// <summary>
-        /// Insert the User in the in memory database
+        /// Insert the User in the static memory defined
         /// </summary>
+        /// <returns>The newly added User</returns>
         /// <param name="user">User.</param>
         public User Insert (User user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            user.Id = this.id++;
+            user.Jobs = new List<Job>();
+            currentUsers.Add(user);
             return user;
         }
-
+        /// <summary>
+        /// Checking if there exits a User in correspond to a email address .
+        /// </summary>
+        /// <returns><c>true</c>, if email address exist <c>false</c> otherwise.</returns>
+        /// <param name="email">Email.</param>
         public bool isUserExist (string email)
         {
-            var foundUser = _context.Users.FirstOrDefault(u => u.EmailAddress == email);
-            if (foundUser == null)
+            for (int i = 0; i < currentUsers.Count; i++) // 
             {
-                return false;
+                if (currentUsers[i].EmailAddress.Equals(email))
+                    return true;
             }
-            else
-            {
-                return true;
-            }
+            return false;
         }
 
-        // Updating a user with the given id
-        // Parameters are the id and the user
+        /// <summary>
+        /// Update the specified id with the given user.
+        /// </summary>
+        /// <returns>Null</returns>
+        /// <param name="id">Identifier of the User</param>
+        /// <param name="user">New User object</param>
         public void Update(long id, User user)
         {
-            User foundUser = _context.Users.FirstOrDefault(u => u.Id == id);
+            User foundUser = findUserbyId(id);
             foundUser.UserName = user.UserName;
             foundUser.PhoneNumber = user.PhoneNumber;
             foundUser.EmailAddress = user.EmailAddress;
-            _context.Users.Update(foundUser);
-            _context.SaveChanges();
+            foundUser.Jobs = user.Jobs;
         }
 
-        // deleting a user with the given id
-        // input id of the to be deleted user
+        /// <summary>
+        /// Delete the User of specified id.
+        /// </summary>
+        /// <returns>Null </returns>
+        /// <param name="id">Identifier.</param>
         public void delete(long id)
         {
-            User currentUser = _context.Users.FirstOrDefault(u => u.Id == id);
-            _context.Users.Remove(currentUser);
-            _context.SaveChanges();
+            for (int i = 0; i < currentUsers.Count; i++) 
+            {
+                if (currentUsers[i].Id == id)
+                    currentUsers.RemoveAt(i);
+            }
         }
 
-        // finding a user by username
-        // input: username of the user
-        public User findUserbyName(string name)
-        {
-            User currentUser = _context.Users.FirstOrDefault(u => u.UserName == name);
-            return currentUser;
-        }
-
-        public IEnumerable<User> findAllUsers()
-        {
-            return _context.Users;
-        }
-
+        /// <summary>
+        /// Updates the User
+        /// </summary>
+        /// <param name="patch">Patch.</param>
+        /// <param name="id">Identifier.</param>
         public void updatePatch(JsonPatchDocument<User> patch, long id)
         {
             User currUser = findUserbyId(id);
             patch.ApplyTo(currUser);
-            _context.Users.Update(currUser);
-            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Adding the Job mentioned to the current user
+        /// it is akin to if a user is applying to a job
+        /// </summary>
+        /// <returns>Nothing</returns>
+        /// <param name="userID">User identifier.</param>
+        /// <param name="jobId">Job identifier.</param>
+        public void addJobById(long userID, long jobId)
+        {
+            User user = findUserbyId(userID);
+            delete(userID);
+            Job currJob = new Job();
+            if (user.Jobs == null)
+            {
+                List<Job> userJobs = new List<Job>();
+                userJobs.Add(currJob);
+                user.Jobs = userJobs;
+            }
+            else
+            {
+                List<Job> userJobs = new List<Job>();
+                userJobs.Add(currJob);
+                user.Jobs = userJobs;
+            }
         }
 
     }

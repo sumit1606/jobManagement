@@ -10,15 +10,17 @@ namespace jobManagement.Models
             
         }
 
-        public User(string UName, string Email)
+        public User(long id, string UName, string Email)
         {
+            this.Id = id;
             this.UserName = UName;
             this.EmailAddress = Email;
             this.Jobs = new List<Job>();
         }
 
-        public User(string UName, string Email, long Phone)
+        public User(long id, string UName, string Email, long Phone)
         {
+            this.Id = id;
             this.UserName = UName;
             this.EmailAddress = Email;
             this.PhoneNumber = Phone;

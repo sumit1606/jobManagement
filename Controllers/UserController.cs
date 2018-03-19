@@ -18,15 +18,13 @@ namespace jobManagement.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly UserContext _context;
         private readonly UserServiceInterface UserService;
         private readonly JobServiceInterface JobService;
         // Creating a default in memory database
         // as soon as class is loaded and inject
         // database context into the class.
-        public UserController(UserContext context, UserServiceInterface UserService, JobServiceInterface JobService)
+        public UserController(UserServiceInterface UserService, JobServiceInterface JobService)
         {
-            _context = context;
             this.UserService = UserService;
             this.JobService = JobService;
         }

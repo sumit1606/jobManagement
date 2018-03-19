@@ -11,7 +11,7 @@ namespace jobManagement.Interfaces
     {
         // creating the methods which will be implemented by the services
         // find list of user by id
-        IEnumerable<Job> findAllJobs();
+        List<Job> findAllJobs();
         Job findJobById(long id);
         void delete(long id);
     }

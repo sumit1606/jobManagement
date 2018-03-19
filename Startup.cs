@@ -11,11 +11,11 @@ namespace jobManagement
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("User"));
-            services.AddDbContext<JobContext>(opt => opt.UseInMemoryDatabase("Job"));
+            //services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("User"));
+            //services.AddDbContext<JobContext>(opt => opt.UseInMemoryDatabase("Job"));
             services.AddMvc();
-            services.AddScoped<UserServiceInterface, UserService>();
-            services.AddScoped<JobServiceInterface, JobService>();
+            services.AddSingleton<UserServiceInterface, UserService>();
+            services.AddSingleton<JobServiceInterface, JobService>();
         }
 
         public void Configure(IApplicationBuilder app)

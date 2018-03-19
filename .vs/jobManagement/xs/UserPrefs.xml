@@ -1,13 +1,26 @@
 ﻿<Properties StartupConfiguration="{E12C8813-2409-44CA-B0BA-20DD18C57CDB}|Default">
   <MonoDevelop.Ide.ItemProperties.jobManagement PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/JobService.cs">
     <Files>
-      <File FileName="appsettings.json" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="17" Column="1" />
+      <File FileName="Startup.cs" Line="19" Column="10" />
+      <File FileName="Controllers/UserController.cs" Line="79" Column="1" />
+      <File FileName="Services/UserService.cs" Line="99" Column="9" />
+      <File FileName="Services/JobService.cs" Line="30" Column="9" />
+      <File FileName="Models/Job.cs" Line="12" Column="26" />
+      <File FileName="Interfaces/JobServiceInterface.cs" Line="15" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Services/UserService.cs" relfile="Services/UserService.cs" line="40" column="1" />
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Controllers/UserController.cs" relfile="Controllers/UserController.cs" line="74" column="1" />
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Controllers/UserController.cs" relfile="Controllers/UserController.cs" line="79" column="1" />
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Controllers/UserController.cs" relfile="Controllers/UserController.cs" line="81" column="1" />
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Services/UserService.cs" relfile="Services/UserService.cs" line="9" column="1" />
+      <Breakpoint file="/Users/sumitbhanwala/Desktop/jobManagement/Services/JobService.cs" relfile="Services/JobService.cs" line="33" column="32" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="../../../../../Projects/test/test/Controllers/UserController.cs" line="42" offsetX="630" offsetY="516" expression="item.userName" liveUpdate="False" />
