@@ -95,7 +95,7 @@ namespace jobManagement.Services
         /// <param name="email">Email.</param>
         public bool isUserExist (string email)
         {
-            for (int i = 0; i < currentUsers.Count; i++) // 
+            for (int i = 0; i < currentUsers.Count; i++) 
             {
                 if (currentUsers[i].EmailAddress.Equals(email))
                     return true;
