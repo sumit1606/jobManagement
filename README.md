@@ -35,3 +35,154 @@ Jobs
 
 ## Rest EndPoints
 End points which can be used for interacting with user
+
+**Get ALL**
+----
+  Returns List of user with each user as a json object.
+
+* **URL**
+
+  /api/user
+
+* **Method:**
+
+  `GET`
+  
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br /> `[
+    {
+        "id": 0,
+        "userName": "testA",
+        "jobs": [],
+        "emailAddress": "testA@gmail.com",
+        "phoneNumber": 0
+    },
+    {
+        "id": 1,
+        "userName": "testB",
+        "jobs": [],
+        "emailAddress": "testB@gmail.com",
+        "phoneNumber": 0
+    },
+    {
+        "id": 2,
+        "userName": "testC",
+        "jobs": [],
+        "emailAddress": "testC@gmail.com",
+        "phoneNumber": 0
+    }
+]`
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+
+**Get By ID**
+----
+  Returns a Json object of User if Present with the id
+
+* **URL**
+
+  /api/user/{id} <br />
+  id = userId
+
+* **Method:**
+  `GET`
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    {
+        "id": 0,
+        "userName": "testA",
+        "jobs": [],
+        "emailAddress": "testA@gmail.com",
+        "phoneNumber": 0
+    }
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `"No such user exits, Please try with a valid id"`
+
+
+
+**Get By Name**
+----
+  Returns a Json object of User if Present with the given username
+
+* **URL**
+
+  /api/user/?name={userName} <br />
+
+* **Method:**
+  `GET`
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    {
+        "id": 0,
+        "userName": "testA",
+        "jobs": [],
+        "emailAddress": "testA@gmail.com",
+        "phoneNumber": 0
+    }
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `"No such user exits, Please try with a valid username"`
+
+
+
+**Create User**
+----
+  Creates a new User object
+  
+* **URL**
+
+  /api/user <br />
+
+* **Method:**
+  `POST`
+  
+* **Post Body**
+{
+    "userName": "testB",
+    "jobs": [],
+    "emailAddress": "testZ@gmail.com",
+    "phoneNumber": 0
+}
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    {
+    "id": 3,
+    "userName": "testB",
+    "jobs": [],
+    "emailAddress": "testZ@gmail.com",
+    "phoneNumber": 0
+    }
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some required fields are missing"`
+   
+    OR
+    
+  * **Code:** 400 BAD REQUEST  <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+    
+     OR
+    
+  * **Code:** 409 Conflict  <br />
+    **Content:** `"Sorry this email address already exists"`
