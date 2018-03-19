@@ -1,0 +1,11 @@
+/Users/sumitbhanwala/Projects/test/test/bin/Debug/netcoreapp2.0/test.deps.json
+/Users/sumitbhanwala/Projects/test/test/bin/Debug/netcoreapp2.0/test.runtimeconfig.json
+/Users/sumitbhanwala/Projects/test/test/bin/Debug/netcoreapp2.0/test.runtimeconfig.dev.json
+/Users/sumitbhanwala/Projects/test/test/bin/Debug/netcoreapp2.0/test.dll
+/Users/sumitbhanwala/Projects/test/test/bin/Debug/netcoreapp2.0/test.pdb
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.csprojResolveAssemblyReference.cache
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.csproj.CoreCompileInputs.cache
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.AssemblyInfoInputs.cache
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.AssemblyInfo.cs
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.dll
+/Users/sumitbhanwala/Projects/test/test/obj/Debug/netcoreapp2.0/test.pdb
