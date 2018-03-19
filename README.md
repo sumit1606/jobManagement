@@ -186,3 +186,75 @@ End points which can be used for interacting with user
     
   * **Code:** 409 Conflict  <br />
     **Content:** `"Sorry this email address already exists"`
+    
+ 
+**Update User**
+----
+  Updates an already existing user
+  
+* **URL**
+
+  /api/user/{id} <br />
+  id = userId <br />
+  e.x id = 3 and in query parameter it should be
+  same as in the post body
+
+* **Method:**
+  `PUT`
+  
+* **Put Body**
+{
+    "id": 3,
+    "userName": "testB",
+    "jobs": [],
+    "emailAddress": "testZ@gmail.com",
+    "phoneNumber": 0
+}
+
+* **Success Response:**
+  * **Code:** 200 <br />
+  
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Incorrect id in post body and path parameter"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"No user exists with this user id"`
+    
+     OR
+    
+  * **Code:** 409 Conflict  <br />
+    **Content:** `"Sorry this email address already exists, Please try with a new one"`
+    
+    OR
+  * **Code:** 400 BAD REQUEST  <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+    
+
+**Delete User**
+----
+  Delete a User with a given id
+  
+* **URL**
+
+  /api/user/{id} <br />
+
+* **Method:**
+  `Delete`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    "User successfully deleted"
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured. Try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"No such user exits, Please try with a valid id"`
+   
