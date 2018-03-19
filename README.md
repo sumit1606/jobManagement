@@ -1,52 +1,87 @@
-Title
-<A job management application using Dot Net Core 2.0 and mvc structure>
+# Project Title
 
-URL
+One Paragraph of project description goes here
 
-<The URL Structure (path only, no root url)>
+## Getting Started
 
-Method:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-<The request type>
+### Prerequisites
 
-GET | POST | DELETE | PUT
+What things you need to install the software and how to install them
 
-URL Params
+```
+Give examples
+```
 
-<If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints.>
+### Installing
 
-Required:
+A step by step series of examples that tell you have to get a development env running
 
-id=[integer]
+Say what the step will be
 
-Optional:
+```
+Give the example
+```
 
-photo_id=[alphanumeric]
+And repeat
 
-Data Params
+```
+until finished
+```
 
-<If making a post request, what should the body payload look like? URL Params rules apply here too.>
+End with an example of getting some data out of the system or using it for a little demo
 
-Success Response:
+## Running the tests
 
-<What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!>
+Explain how to run the automated tests for this system
 
-Code: 200 
-Content: { id : 12 }
-Error Response:
+### Break down into end to end tests
 
-<Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be.>
+Explain what these tests test and why
 
-Code: 401 UNAUTHORIZED 
-Content: { error : "Log in" }
-OR
+```
+Give an example
+```
 
-Code: 422 UNPROCESSABLE ENTRY 
-Content: { error : "Email Invalid" }
-Sample Call:
+### And coding style tests
 
-<Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable.>
+Explain what these tests test and why
 
-Notes:
+```
+Give an example
+```
 
-<This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here.>
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone who's code was used
+* Inspiration
+* etc
