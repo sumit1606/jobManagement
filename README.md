@@ -36,7 +36,7 @@ Jobs
 ## Rest EndPoints
 End points which can be used for interacting with user
 
-**Get ALL**
+**Get ALL Users**
 ----
   Returns List of user with each user as a json object.
 
@@ -78,7 +78,7 @@ End points which can be used for interacting with user
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `"Some exception occured on server side, please try again"`
 
-**Get By ID**
+**Get User By ID**
 ----
   Returns a Json object of User if Present with the id
 
@@ -111,7 +111,7 @@ End points which can be used for interacting with user
 
 
 
-**Get By Name**
+**Get User By Name**
 ----
   Returns a Json object of User if Present with the given username
 
