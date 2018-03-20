@@ -314,8 +314,8 @@ End points which can be used for interacting with user
 
 * **Success Response:**
   * **Code:** 200 <br />
-    **Content:** <br />`
-    [
+    **Content:** <br />
+    `[
     {
         "id": 0,
         "companyName": "Moster",
@@ -331,9 +331,7 @@ End points which can be used for interacting with user
         "companyName": "Facebook",
         "jobDescription": "Software Developer Intern"
     }
-]
-   
-    `
+]`
 * **Error Response:**
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `"Some exception occured on server side, please try again"`
