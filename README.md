@@ -261,7 +261,8 @@ End points which can be used for interacting with user
 
 **Patch User**
 ----
-  Patch a user with the given id
+  Patch a user with the given id on any field except
+  job for which there is a sepetate endpoint
   
 * **URL**
   /api/user/{id} <br />
