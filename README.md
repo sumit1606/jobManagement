@@ -1,4 +1,4 @@
-# Project Title
+# JOB Management Rest End points
 Job Mangement Application Using Dot Net Core and MVC architecture at the backend
 ## Getting Started
 Download the Project and Build it in visual studio.By default it will run on http://localhost:5000
@@ -36,7 +36,7 @@ Jobs
 ## Rest EndPoints
 End points which can be used for interacting with user
 
-**Get ALL**
+**Get ALL Users**
 ----
   Returns List of user with each user as a json object.
 
@@ -78,7 +78,7 @@ End points which can be used for interacting with user
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `"Some exception occured on server side, please try again"`
 
-**Get By ID**
+**Get User By ID**
 ----
   Returns a Json object of User if Present with the id
 
@@ -111,7 +111,7 @@ End points which can be used for interacting with user
 
 
 
-**Get By Name**
+**Get User By Name**
 ----
   Returns a Json object of User if Present with the given username
 
@@ -282,7 +282,6 @@ End points which can be used for interacting with user
       "value": 8573209210
     }
 ]
-
 * **Success Response:**
   * **Code:** 200 <br />
     **Content:** <br />`
@@ -301,3 +300,93 @@ End points which can be used for interacting with user
     
   * **Code:** 404 NOT FOUND  <br />
     **Content:** `"Sorry this email address already exists, Please try with a new one"`
+    
+ 
+**Get All Jobs**
+----
+  Get a list of jobs that are present in the database
+* **URL**
+
+  /api/job <br />
+
+* **Method:**
+  `GET`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />
+    `[
+    {
+        "id": 0,
+        "companyName": "Moster",
+        "jobDescription": "Software Developer Intern"
+    },
+    {
+        "id": 1,
+        "companyName": "Samsung",
+        "jobDescription": "Software Developer Intern"
+    },
+    {
+        "id": 2,
+        "companyName": "Facebook",
+        "jobDescription": "Software Developer Intern"
+    }
+]`
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+  
+**Get Job By ID**
+----
+  Returns a Json object of Job if Present with the id
+
+* **URL**
+
+  /api/job/{id} <br />
+  id = jobId
+
+* **Method:**
+  `GET`
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    {
+    "id": 1,
+    "companyName": "Samsung",
+    "jobDescription": "Software Developer Intern"
+} `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `"No such job exits, Please try with a valid id"`
+
+
+**Delete Job**
+----
+  Delete a Job with a given id
+  
+* **URL**
+
+  /api/job/{id} <br />
+
+* **Method:**
+  `Delete`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    "Job successfully deleted"
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured. Try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"No such job exits, Please try with a valid id"`
+   
