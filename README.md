@@ -259,6 +259,40 @@ End points which can be used for interacting with user
     **Content:** `"No such user exits, Please try with a valid id"`
    
 
+**Update User Jobs**
+----
+  Patch a user with the given jobs
+  
+* **URL**
+  /api/user/applyjob/{id} <br />
+  {id} = userID
+* **Method:**
+  `Patch`
+* **Patch Body** <br/>
+`[
+    {
+      "op": "remove",
+      "path": "/jobs/-",
+      "value": 1
+    }
+]`
+<br/>
+`value represent the jobId`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    "User successfully updated"
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured. Try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"No such user exits, Please try with a valid id"`
+    
 **Patch User**
 ----
   Patch a user with the given id on any field except
@@ -302,7 +336,8 @@ End points which can be used for interacting with user
   * **Code:** 404 NOT FOUND  <br />
     **Content:** `"Sorry this email address already exists, Please try with a new one"`
     
- 
+
+
 **Get All Jobs**
 ----
   Get a list of jobs that are present in the database
