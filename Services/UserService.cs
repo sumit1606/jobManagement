@@ -151,16 +151,9 @@ namespace jobManagement.Services
         /// </summary>
         /// <returns>Nothing</returns>
         /// <param name="">User identifier.</param>
-        public void addJobById(long id, JsonPatchDocument<User> patch, long jobId)
+        public void addJobById(long id, JsonPatchDocument<User> patch)
         {
             User currUser = findUserbyId(id);
-            foreach (var operation in patch.Operations)
-            {
-                if(operation.path.Equals("/jobs"))
-                {
-                    operation.value = JobService.findJobById(jobId);
-                }
-            }
             patch.ApplyTo(currUser);
         }
 

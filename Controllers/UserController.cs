@@ -182,12 +182,11 @@ namespace jobManagement.Controllers
         }
 
         /// <summary>
-        /// Patch the specified id and patch.
+        /// Patch the specified id and patch on fields except the Jobs
         /// </summary>
         /// <returns>The patch.</returns>
         /// <param name="id">Identifier.</param>
         /// <param name="patch">Patch.</param>
-
         [HttpPatch("{id}")]
         public IActionResult Patch(long id, [FromBody]JsonPatchDocument<User> patch)
         {
@@ -217,9 +216,16 @@ namespace jobManagement.Controllers
                             return StatusCode(StatusCodes.Status409Conflict, "Sorry this email address already exists, Please try with a new one");
                         }
                     }
+                    // So the id of the User doesnt get modified
+                    // with no operation better way will be to
+                    // just remove this operation from the set of operations
+                    if (operation.path.Contains("id"))
+                    {
+                        operation.op = "replace";
+                        operation.value = id;
+                    }
                 }
                 UserService.updatePartialUser(patch, id);
-
             }
             catch (Exception)
             {
@@ -229,7 +235,7 @@ namespace jobManagement.Controllers
         }
 
         /// <summary>
-        /// Applies the job patch.
+        /// Applies the patch on the user object on the jobs only.
         /// </summary>
         /// <returns>The job patch.</returns>
         /// <param name="id">Identifier.</param>
@@ -250,8 +256,9 @@ namespace jobManagement.Controllers
                     if (appliedJob == null)
                         return NotFound("Sorry this job currently doesn't exist");
                     else
-                        UserService.addJobById(id, patch,jobId);
+                        operation.value = appliedJob;
                 }
+                UserService.addJobById(id, patch);
             }
             catch (Exception)
             {
@@ -259,6 +266,5 @@ namespace jobManagement.Controllers
             }
             return StatusCode(StatusCodes.Status200OK, "User Patched updated");
         }
-
     }
 }

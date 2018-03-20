@@ -20,6 +20,6 @@ namespace jobManagement.Interfaces
         void Update(long id, User user);
         void delete(long id);
         void updatePartialUser(JsonPatchDocument<User> patch, long id);
-        void addJobById(long id, JsonPatchDocument<User> patch, long jobId);
+        void addJobById(long id, JsonPatchDocument<User> patch);
     }
 }
