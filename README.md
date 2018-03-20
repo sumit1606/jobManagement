@@ -336,3 +336,30 @@ End points which can be used for interacting with user
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `"Some exception occured on server side, please try again"`
   
+**Get Job By ID**
+----
+  Returns a Json object of Job if Present with the id
+
+* **URL**
+
+  /api/job/{id} <br />
+  id = jobId
+
+* **Method:**
+  `GET`
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    {
+    "id": 1,
+    "companyName": "Samsung",
+    "jobDescription": "Software Developer Intern"
+} `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `"No such job exits, Please try with a valid id"`
