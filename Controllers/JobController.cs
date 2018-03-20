@@ -9,21 +9,20 @@ using Microsoft.AspNetCore.JsonPatch;
 using jobManagement.Interfaces;
 using jobManagement.Services;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace jobManagement.Controllers
 {
     [Route("api/[controller]")]
     public class JobController : Controller
     {
-        private readonly JobContext _context;
         private readonly JobServiceInterface JobService;
 
         // Creating a default in memory database
         // as soon as class is loaded and inject
         // database context into the class.
-        public JobController(JobContext context, JobServiceInterface JobService)
+        public JobController(JobServiceInterface JobService)
         {
-            _context = context;
             this.JobService = JobService;
         }
 
@@ -41,5 +40,33 @@ namespace jobManagement.Controllers
             }
             return new ObjectResult(myJobs);
         }
+
+
+        /// <summary>
+        /// Delete the specified id.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="id">id of the Job to be deleted.</param>
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
+        {
+            try
+            {
+                Job j = JobService.findJobById(id);
+                if (j == null)
+                {
+                    return NotFound("No such user exits, Please try with a valid id");
+                }
+                JobService.delete(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Some exception occured. Try again");
+            }
+            return StatusCode(StatusCodes.Status200OK, "Job successfully deleted");
+        }
+
+
+
     }
 }

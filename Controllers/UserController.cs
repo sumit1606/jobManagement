@@ -33,8 +33,8 @@ namespace jobManagement.Controllers
         // as our default path is host/api/user
         // GET api/user
         /// <summary>
-        /// Get the specified user by username
-        /// TODO :- Make sure to add the email address clause too
+        /// Get the specified user by username if query parameters are passed
+        //  otherwise returns all the users
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="name">Name.</param>
@@ -61,6 +61,7 @@ namespace jobManagement.Controllers
             }
             return new ObjectResult(currentUser);
         }
+
         /// <summary>
         /// Gets the User by Id
         /// GET api/user/id
@@ -102,7 +103,7 @@ namespace jobManagement.Controllers
                 {   
                     if (user == null || user.UserName == null || user.EmailAddress == null)
                     {
-                        return BadRequest("Some fields are missing");
+                        return BadRequest("Some required fields are missing");
                     }
                     // if no user is found than we create a new user with the
                     // given details
@@ -117,9 +118,8 @@ namespace jobManagement.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest("Some exception occured. Try again");
+                    return BadRequest("Some exception occured on server side, please try again");
                 }
-            // TODO :- maybe send an id of the user with the path so that it can be used for redirection
                 return Ok(user);   
         }
 
@@ -197,28 +197,41 @@ namespace jobManagement.Controllers
                 {
                     return NotFound("No such user exits, Please try with a valid id");
                 }
+                // checking if any patch is on the emailaddress field
+                // as we want to make sure that email address are unique
+                // in the database
                 foreach (var operation in patch.Operations)
                 {
                     if (operation.path.Contains("EmailAddress"))
                     {
+                        // if the email address already exits than fail the patch
                         String newEmailAddress = operation.value.ToString();
                         bool userExists = UserService.isUserExist(newEmailAddress);
                         User user = UserService.findUserbyId(id);
+                        // if the email address already exits and belong to this
+                        // user than apply the patch
                         if (userExists && (!user.EmailAddress.Equals(newEmailAddress)))
                         {
                             return StatusCode(StatusCodes.Status409Conflict, "Sorry this email address already exists, Please try with a new one");
                         }
                     }
                 }
-                UserService.updatePatch(patch, id);
+                UserService.updatePartialUser(patch, id);
+
             }
             catch (Exception)
             {
                 return BadRequest("Some exception occured. Try again");
             }
-            return StatusCode(StatusCodes.Status200OK, "User Patched updated");
+            return StatusCode(StatusCodes.Status200OK, "User successfully updated");
         }
 
+        /// <summary>
+        /// Applies the job patch.
+        /// </summary>
+        /// <returns>The job patch.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="patch">Patch.</param>
         [HttpPatch("applyjob/{id}")]
         public IActionResult applyJobPatch(long id, [FromBody]JsonPatchDocument<User> patch)
         {
@@ -231,7 +244,11 @@ namespace jobManagement.Controllers
                 foreach (var operation in patch.Operations)
                 {
                     long jobId = (long)operation.value;
-                    UserService.addJobById(id, jobId);
+                    Job appliedJob = JobService.findJobById(jobId);
+                    if (appliedJob == null)
+                        return NotFound("Sorry this job currently doesn't exist");
+                    else
+                        UserService.addJobById(id, patch,jobId);
                 }
             }
             catch (Exception)

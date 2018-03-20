@@ -14,7 +14,6 @@ namespace jobManagement.Interfaces
         List<Job> findAllJobs();
         Job findJobById(long id);
         void delete(long id);
-
     }
 }
 

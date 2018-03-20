@@ -18,7 +18,11 @@ namespace jobManagement.Services
         {
             InitializeData();
         }
-
+        /// <summary>
+        /// Delete the specified id from the Jobs
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="id">Identifier.</param>
         public void delete(long id)
         {
             for (int i = 0; i < currentJobs.Count; i++) 
@@ -27,12 +31,20 @@ namespace jobManagement.Services
                     currentJobs.RemoveAt(i);
             }
         }
-
+        /// <summary>
+        /// Finds all jobs.
+        /// </summary>
+        /// <returns> all the jobs.</returns>
         public List<Job> findAllJobs()
         {
             return currentJobs;
         }
 
+        /// <summary>
+        /// Finds the job by identifier.
+        /// </summary>
+        /// <returns>The Job if present else returns null.</returns>
+        /// <param name="id">Identifier.</param>
         public Job findJobById(long id)
         {
             for (int i = 0; i < currentJobs.Count; i++)

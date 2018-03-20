@@ -76,6 +76,7 @@ namespace jobManagement.Services
             }
             return null;
         }
+
         /// <summary>
         /// Insert the User in the static memory defined
         /// </summary>
@@ -88,6 +89,7 @@ namespace jobManagement.Services
             currentUsers.Add(user);
             return user;
         }
+
         /// <summary>
         /// Checking if there exits a User in correspond to a email address .
         /// </summary>
@@ -137,7 +139,7 @@ namespace jobManagement.Services
         /// </summary>
         /// <param name="patch">Patch.</param>
         /// <param name="id">Identifier.</param>
-        public void updatePatch(JsonPatchDocument<User> patch, long id)
+        public void updatePartialUser(JsonPatchDocument<User> patch, long id)
         {
             User currUser = findUserbyId(id);
             patch.ApplyTo(currUser);
@@ -149,24 +151,17 @@ namespace jobManagement.Services
         /// </summary>
         /// <returns>Nothing</returns>
         /// <param name="userID">User identifier.</param>
-        /// <param name="jobId">Job identifier.</param>
-        public void addJobById(long userID, long jobId)
+        public void addJobById(long id, JsonPatchDocument<User> patch, long jobId)
         {
-            User user = findUserbyId(userID);
-            delete(userID);
-            Job currJob = new Job();
-            if (user.Jobs == null)
+            User currUser = findUserbyId(id);
+            foreach (var operation in patch.Operations)
             {
-                List<Job> userJobs = new List<Job>();
-                userJobs.Add(currJob);
-                user.Jobs = userJobs;
+                if(operation.path.Equals("/jobs"))
+                {
+                    operation.value = JobService.findJobById(jobId);
+                }
             }
-            else
-            {
-                List<Job> userJobs = new List<Job>();
-                userJobs.Add(currJob);
-                user.Jobs = userJobs;
-            }
+            patch.ApplyTo(currUser);
         }
 
     }
