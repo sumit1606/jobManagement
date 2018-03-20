@@ -1,4 +1,4 @@
-# Project Title
+# JOB Management Rest End points
 Job Mangement Application Using Dot Net Core and MVC architecture at the backend
 ## Getting Started
 Download the Project and Build it in visual studio.By default it will run on http://localhost:5000
@@ -282,7 +282,6 @@ End points which can be used for interacting with user
       "value": 8573209210
     }
 ]
-
 * **Success Response:**
   * **Code:** 200 <br />
     **Content:** <br />`
@@ -301,3 +300,41 @@ End points which can be used for interacting with user
     
   * **Code:** 404 NOT FOUND  <br />
     **Content:** `"Sorry this email address already exists, Please try with a new one"`
+    
+ 
+**Get All Jobs**
+----
+  Get a list of jobs that are present in the database
+* **URL**
+
+  /api/job <br />
+
+* **Method:**
+  `GET`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    [
+    {
+        "id": 0,
+        "companyName": "Moster",
+        "jobDescription": "Software Developer Intern"
+    },
+    {
+        "id": 1,
+        "companyName": "Samsung",
+        "jobDescription": "Software Developer Intern"
+    },
+    {
+        "id": 2,
+        "companyName": "Facebook",
+        "jobDescription": "Software Developer Intern"
+    }
+]
+   
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured on server side, please try again"`
+  
