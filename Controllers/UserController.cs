@@ -206,6 +206,8 @@ namespace jobManagement.Controllers
                     {
                         // if the email address already exits than fail the patch
                         String newEmailAddress = operation.value.ToString();
+                        if (newEmailAddress.Equals("") || operation.op.Equals("remove"))
+                            return StatusCode(StatusCodes.Status400BadRequest, "Email cant not be empty");
                         bool userExists = UserService.isUserExist(newEmailAddress);
                         User user = UserService.findUserbyId(id);
                         // if the email address already exits and belong to this

@@ -1,15 +1,11 @@
 ﻿<Properties StartupConfiguration="{E12C8813-2409-44CA-B0BA-20DD18C57CDB}|Default">
   <MonoDevelop.Ide.ItemProperties.jobManagement PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Services/JobService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/UserController.cs">
     <Files>
       <File FileName="Program.cs" Line="21" Column="30" />
       <File FileName="Startup.cs" Line="15" Column="88" />
       <File FileName="Services/UserService.cs" Line="153" Column="26" />
-      <File FileName="Interfaces/UserServiceInterface.cs" Line="23" Column="75" />
-      <File FileName="Models/Job.cs" Line="12" Column="26" />
-      <File FileName="Controllers/UserController.cs" Line="160" Column="9" />
-      <File FileName="Controllers/JobController.cs" Line="24" Column="61" />
-      <File FileName="Services/JobService.cs" Line="51" Column="14" />
+      <File FileName="Controllers/UserController.cs" Line="65" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
