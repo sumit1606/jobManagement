@@ -26,6 +26,10 @@ namespace jobManagement.Controllers
             this.JobService = JobService;
         }
 
+        /// <summary>
+        /// Gets all jobs that are present in the databse
+        /// </summary>
+        /// <returns>All the jobs that are present</returns>
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -41,6 +45,31 @@ namespace jobManagement.Controllers
             return new ObjectResult(myJobs);
         }
 
+        /// <summary>
+        /// Gets the User by Id
+        /// GET api/job/id
+        /// </summary>
+        /// <returns>Job if present</returns>
+        /// <returns>Return 404 if user is not present </returns>
+        /// <param name="id">Job Id.</param>
+        [HttpGet("{id}", Name = "GetJobById")]
+        public IActionResult GetJobById(long id)
+        {
+            Job currentJob = null;
+            // assuming that UserName and Email address are the required fields
+            // if they are not present send a bad request
+            try
+            {
+                currentJob = JobService.findJobById(id);
+                if (currentJob == null)
+                    return NotFound("No such job exits, Please try with a valid id");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Some exception occured on server side, please try again");
+            }
+            return new ObjectResult(currentJob);
+        }
 
         /// <summary>
         /// Delete the specified id.
@@ -55,7 +84,7 @@ namespace jobManagement.Controllers
                 Job j = JobService.findJobById(id);
                 if (j == null)
                 {
-                    return NotFound("No such user exits, Please try with a valid id");
+                    return NotFound("No such job exits, Please try with a valid id");
                 }
                 JobService.delete(id);
             }

@@ -150,7 +150,7 @@ namespace jobManagement.Services
         /// it is akin to if a user is applying to a job
         /// </summary>
         /// <returns>Nothing</returns>
-        /// <param name="userID">User identifier.</param>
+        /// <param name="">User identifier.</param>
         public void addJobById(long id, JsonPatchDocument<User> patch, long jobId)
         {
             User currUser = findUserbyId(id);
