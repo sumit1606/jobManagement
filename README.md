@@ -363,3 +363,30 @@ End points which can be used for interacting with user
     
   * **Code:** 404 NOT FOUND <br />
     **Content:** `"No such job exits, Please try with a valid id"`
+
+
+**Delete Job**
+----
+  Delete a Job with a given id
+  
+* **URL**
+
+  /api/job/{id} <br />
+
+* **Method:**
+  `Delete`
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    "Job successfully deleted"
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured. Try again"`
+   
+    OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"No such job exits, Please try with a valid id"`
+   
