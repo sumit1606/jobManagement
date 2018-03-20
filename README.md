@@ -258,3 +258,46 @@ End points which can be used for interacting with user
   * **Code:** 404 NOT FOUND  <br />
     **Content:** `"No such user exits, Please try with a valid id"`
    
+
+**Patch User**
+----
+  Patch a user with the given id
+  
+* **URL**
+  /api/user/{id} <br />
+
+* **Method:**
+  `Patch`
+  
+* **Patch Body**
+[
+    {
+      "op": "replace",
+      "path": "/UserName",
+      "value": "userUpdated"
+    },
+    {
+      "op": "replace",
+      "path": "/PhoneNumber",
+      "value": 8573209210
+    }
+]
+
+* **Success Response:**
+  * **Code:** 200 <br />
+    **Content:** <br />`
+    "User successfully updated"
+    `
+* **Error Response:**
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `"Some exception occured. Try again"`
+   
+    OR
+    
+  * **Code:** 409 CONFLICT  <br />
+    **Content:** `"Sorry this email address already exists, Please try with a new one"`
+    
+      OR
+    
+  * **Code:** 404 NOT FOUND  <br />
+    **Content:** `"Sorry this email address already exists, Please try with a new one"`
